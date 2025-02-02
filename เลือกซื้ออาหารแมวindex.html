@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/1XQnXeR.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เลือกซื้ออาหารสุนัข</title>
+    <style>
+       .zoom:hover {
+            transform: scale(1.1);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fcb900;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #cf2e2e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative; 
+        }
+        header img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+        }
+        header img.left {
+            left: 20px;
+        }
+        header img.right {
+           right: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .product h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .product p {
+            font-size: 16px;
+            color: #333;
+        }
+        .product button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .product button:hover {
+            background-color: #218838;
+        }
+        
+        /* ตะกร้า */
+        .cart {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 8px;
+        }
+        .cart h3 {
+            text-align: center;
+            font-size: 18px;
+        }
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+        .cart-items li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .cart-items button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .cart-items button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+
+<header>
+    <img src="https://i.imgur.com/0oclN8Y.png" alt="โลโก้" class="left">
+    <h1>THE BEST PET FOOD SHOP</h1>
+    <img src="https://i.imgur.com/Kxj8EPS.png" alt="ตะกร้า" class="right" onclick="toggleCart()">
+</header>
+
+<div class="container">
+    <div class="product">
+        <img src="https://www.petnme.co.th/wp-content/uploads/2024/05/A211200078970-0.png" alt="สินค้า 1">
+        <h3>Cat N Joy แคท เอ็นจอย อาหารเม็ด สำหรับลูกแมวทุกสายพันธุ์ รสปลาทะเลไก่และนม 1.2 kg </h3>
+        <p>ราคาคือ 525 บาท</p>
+        <button class="zoom" onclick="addToCart('Cat N Joy แคท เอ็นจอย อาหารเม็ด สำหรับลูกแมวทุกสายพันธุ์ รสปลาทะเลไก่และนม 1.2 kg', 525)">เพิ่มลงในตะกร้า</button>
+    </div>
+    <div class="product">
+        <img src="https://www.petnme.co.th/wp-content/uploads/2024/05/2101010780001-0.png" alt="สินค้า 2">
+        <h3>Royal Canin โรยัล คานิน อาหารเม็ด สำหรับแมวโตรูปร่างดี อายุ 1 ปีขึ้นไป 2 kg</h3>
+        <p>ราคาคือ 800 บาท</p>
+        <button class="zoom" onclick="addToCart('Royal Canin โรยัล คานิน อาหารเม็ด สำหรับแมวโตรูปร่างดี อายุ 1 ปีขึ้นไป 2 kg', 800)">เพิ่มลงในตะกร้า</button>
+    </div>
+    <div class="product">
+        <img src="https://www.petnme.co.th/wp-content/uploads/2024/05/a211200080488-1-768x768.jpg" alt="สินค้า 3">
+        <h3>Kaniva คานิว่า อาหารเม็ด สูตรเนื้อแกะ ทูน่าและข้าว สำหรับแมวทุกช่วงวัยทุกสายพันธุ์ 1.4 kg</h3>
+        <p>ราคาคือ 650 บาท</p>
+        <button class="zoom" onclick="addToCart('Kaniva คานิว่า อาหารเม็ด สูตรเนื้อแกะ ทูน่าและข้าว สำหรับแมวทุกช่วงวัยทุกสายพันธุ์ 1.4 kg', 650)">เพิ่มลงในตะกร้า</button>
+    </div>
+   <div class="product">
+        <img src="https://www.petnme.co.th/wp-content/uploads/2024/05/2101011350002-0.png" alt="สินค้า 4">
+        <h3>
+Royal Canin โรยัล คานิน อาหารเม็ด สำหรับแมวโต ทำหมัน อายุ 1 ปีขึ้นไป 2 kg</h3>
+        <p>ราคาคือ 500 บาท</p>
+        <button class="zoom" onclick="addToCart('Royal Canin โรยัล คานิน อาหารเม็ด สำหรับแมวโต ทำหมัน อายุ 1 ปีขึ้นไป 2 kg', 500)">เพิ่มลงในตะกร้า</button>
+    </div>
+  <div class="product">
+        <img src="https://www.petnme.co.th/wp-content/uploads/2024/05/2104011070001-1.jpg" alt="สินค้า 5">
+        <h3>RNekko เน็กโกะ อาหารเปียก สำหรับแมว รสปลาทูน่าในน้ำเกรวี่ 70 g</h3>
+        <p>ราคาคือ 120 บาท</p>
+        <button class="zoom" onclick="addToCart('Nekko เน็กโกะ อาหารเปียก สำหรับแมว รสปลาทูน่าในน้ำเกรวี่ 70 g', 120)">เพิ่มลงในตะกร้า</button>
+    </div>
+  <div class="product">
+        <img src="https://www.petnme.co.th/wp-content/uploads/2024/05/2101020150001-0.png" alt="สินค้า 6">
+        <h3> Hill’s ฮิลส์ อาหารเม็ด สำหรับลูกแมว 1.59 kg </h3>
+        <p>ราคาคือ 430 บาท</p>
+        <button class="zoom" onclick="addToCart('Hill’s ฮิลส์ อาหารเม็ด สำหรับลูกแมว 1.59 kg', 430)">เพิ่มลงในตะกร้า</button>
+    </div>
+  <div class="product">
+        <img src="https://www.petnme.co.th/wp-content/uploads/2024/05/2101011340001-0.png" alt="สินค้า 7">
+        <h3>Royal Canin โรยัล คานิน อาหารเม็ด สำหรับแมวโตช่างเลือก ที่ชอบอาหารที่มีกลิ่นหอม อายุ 1 ปีขึ้นไป 400 g</h3>
+        <p>ราคาคือ 100 บาท</p>
+        <button class="zoom" onclick="addToCart('Royal Canin โรยัล คานิน อาหารเม็ด สำหรับแมวโตช่างเลือก ที่ชอบอาหารที่มีกลิ่นหอม อายุ 1 ปีขึ้นไป 400 g', 100)">เพิ่มลงในตะกร้า</button>
+    </div>
+  <div class="product">
+        <img src="https://www.petnme.co.th/wp-content/uploads/2024/05/2101040030001-0.png" alt="สินค้า 8">
+        <h3>Hill’s ฮิลส์ อาหารเม็ด สำหรับแมวโตอายุ 7 ขึ้นไป 1.5 kg </h3>
+        <p>ราคาคือ 800 บาท</p>
+        <button class="zoom" onclick="addToCart('Hill’s ฮิลส์ อาหารเม็ด สำหรับแมวโตอายุ 7 ขึ้นไป 1.5 kg', 800)">เพิ่มลงในตะกร้า</button>
+    </div>
+</div>
+
+<!-- ตะกร้าสินค้า -->
+<div class="cart" id="cart" style="display: none;">
+    <h3>ตะกร้าของคุณ</h3>
+    <ul class="cart-items" id="cartItems"></ul>
+    <button onclick="checkout()">สั่งซื้อ</button>
+</div>
+
+<script>
+    let cart = [];
+
+    // ฟังก์ชันเพิ่มสินค้าในตะกร้า
+    function addToCart(productName, price) {
+        cart.push({ name: productName, price: price });
+        alert(`${productName} ถูกเพิ่มลงในตะกร้า`);
+        updateCart();
+    }
+
+    // ฟังก์ชันอัปเดตตะกร้า
+    function updateCart() {
+        const cartItemsContainer = document.getElementById('cartItems');
+        cartItemsContainer.innerHTML = '';
+
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - ฿${item.price}`;
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'ลบ';
+            removeButton.onclick = () => removeFromCart(item.name);
+            li.appendChild(removeButton);
+            cartItemsContainer.appendChild(li);
+        });
+    }
+
+    // ฟังก์ชันลบสินค้าออกจากตะกร้า
+    function removeFromCart(productName) {
+        cart = cart.filter(item => item.name !== productName);
+        updateCart();
+    }
+
+    // ฟังก์ชันแสดง/ซ่อนตะกร้า
+    function toggleCart() {
+        const cartElement = document.getElementById('cart');
+        cartElement.style.display = cartElement.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // ฟังก์ชันสำหรับการสั่งซื้อ
+    function checkout() {
+        if (cart.length === 0) {
+            alert('กรุณาเพิ่มสินค้าในตะกร้าก่อน');
+        } else {
+            alert('ขอบคุณสำหรับการสั่งซื้อ!');
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+    }
+</script>
+
+</body>
+</html>
